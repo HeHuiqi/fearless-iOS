@@ -72,4 +72,9 @@ extension StorageKeyFactoryProtocol {
         try createStorageKey(moduleName: "Staking",
                              serviceName: "Validators")
     }
+
+    func totalIssuance() throws -> Data {
+        try createStorageKey(moduleName: "Balances",
+                             serviceName: "TotalIssuance")
+    }
  }
