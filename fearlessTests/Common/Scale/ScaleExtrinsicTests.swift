@@ -58,4 +58,8 @@ class ScaleExtrinsicTestsTests: XCTestCase {
         XCTAssertNoThrow(try Extrinsic(scaleDecoder: decoder))
         XCTAssertTrue(decoder.remained == 0)
     }
+
+    func testBatchExtrinsic() throws {
+        Logger.shared.debug("Line: \(Locale.lineDirection(forLanguage: "ar").rawValue)")
+    }
 }
