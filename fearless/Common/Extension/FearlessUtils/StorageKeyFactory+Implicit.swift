@@ -85,6 +85,19 @@ extension StorageKeyFactoryProtocol {
                              hasher: Twox64Concat())
     }
 
+    func eraValidatorPrefs(for eraIndex: UInt32, accountId: Data) throws -> Data {
+        let encoder = ScaleEncoder()
+        try eraIndex.encode(scaleEncoder: encoder)
+        let identifier = encoder.encode()
+
+        let partialKey = try createStorageKey(moduleName: "Staking",
+                                              serviceName: "ErasValidatorPrefs",
+                                              identifier: identifier,
+                                              hasher: Twox64Concat())
+
+        return partialKey + accountId.twox64Concat()
+    }
+
     func eraStakersExposure(for eraIndex: UInt32, accountId: Data) throws -> Data {
         let encoder = ScaleEncoder()
         try eraIndex.encode(scaleEncoder: encoder)
@@ -92,6 +105,19 @@ extension StorageKeyFactoryProtocol {
 
         let partialKey = try createStorageKey(moduleName: "Staking",
                                               serviceName: "ErasStakers",
+                                              identifier: identifier,
+                                              hasher: Twox64Concat())
+
+        return partialKey + accountId.twox64Concat()
+    }
+
+    func eraStakersExposureClipped(for eraIndex: UInt32, accountId: Data) throws -> Data {
+        let encoder = ScaleEncoder()
+        try eraIndex.encode(scaleEncoder: encoder)
+        let identifier = encoder.encode()
+
+        let partialKey = try createStorageKey(moduleName: "Staking",
+                                              serviceName: "ErasStakersClipped",
                                               identifier: identifier,
                                               hasher: Twox64Concat())
 
